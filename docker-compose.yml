@@ -1,0 +1,23 @@
+version: "3"
+services:
+  go-cqhttp:
+    build: ./gocq
+    ports:
+      - 5700:5700
+      - 6700:6700
+    #environment:
+    # UIN: '2790912541'
+    #  PASS: 'zzm88104'
+    #  ENABLE_DB: 'false'
+          # volumes:
+    #   - ./cqhttp.hjson:config.hjson
+    #   - ./device.json:device.json
+  nonebot:
+     build: ./nonebot
+     expose:
+       - 8080
+     ports:
+       - 8080:8080
+     depends_on:
+       - go-cqhttp
+
